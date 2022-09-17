@@ -1,3 +1,5 @@
+import 'package:badal/Screens/homePage.dart';
+import 'package:badal/Screens/index.dart';
 import 'package:flutter/material.dart';
 import 'Screens/home.dart';
 
@@ -8,6 +10,9 @@ class Badal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Home();
+    
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Index(),);
   }
 }
