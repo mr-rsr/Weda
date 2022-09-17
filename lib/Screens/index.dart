@@ -1,9 +1,9 @@
+import 'package:badal/components/hourlyDetai;.dart';
+import 'package:badal/components/weatherDetail.dart';
 import 'package:badal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:badal/components/daysForcast.dart';
-import 'package:badal/components/threeDay.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
+import '../components/threeDayDetail.dart';
 
 class Index extends StatefulWidget {
   const Index({super.key});
@@ -15,12 +15,6 @@ class Index extends StatefulWidget {
 class _IndexState extends State<Index> {
   @override
   Widget build(BuildContext context) {
-    initState() {
-      super.initState();
-      precacheImage(
-          const AssetImage("assets/images/background_3.jpg"), context);
-    }
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
@@ -206,56 +200,7 @@ class _IndexState extends State<Index> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          const SizedBox(),
-                          Row(
-                            children: [
-                              Text(
-                                "More Details",
-                                style: GoogleFonts.roboto(
-                                  textStyle: const TextStyle(
-                                    color: fontColor,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              const Icon(Icons.arrow_forward_ios,
-                                  color: fontColor, size: 13)
-                            ],
-                          )
-                        ],
-                      ),
-                      const ThreeDay(
-                          icon: Icons.cloud,
-                          day: "Today",
-                          status: "Cloudy",
-                          highTemp: "30",
-                          lowTemp: "24"),
-                      const ThreeDay(
-                          icon: Icons.thunderstorm,
-                          day: "Tomorrow",
-                          status: "Thunderstorm",
-                          highTemp: "31",
-                          lowTemp: "24"),
-                      const ThreeDay(
-                          icon: Icons.thunderstorm,
-                          day: "Sat",
-                          status: "Thunderstorm",
-                          highTemp: "30",
-                          lowTemp: "24"),
-                    ],
-                  ),
-                ),
+                const ThreeDayDetail(),
                 Center(
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),
@@ -286,61 +231,45 @@ class _IndexState extends State<Index> {
                 const SizedBox(
                   height: 35,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const <Widget>[
-                      DayForcast(
-                        time: "Now",
-                        temp: "29°",
-                        wind: "13.5 km/h",
-                        icon: Icons.cloud,
-                        navIcon: Icons.near_me,
-                      ),
-                      DayForcast(
-                        time: "01:00pm",
-                        temp: "29°",
-                        wind: "13.5 km/h",
-                        icon: Icons.cloud,
-                        navIcon: Icons.navigation,
-                      ),
-                      DayForcast(
-                        time: "02:00pm",
-                        temp: "29°",
-                        wind: "13.5 km/h",
-                        icon: Icons.cloud,
-                        navIcon: Icons.navigation,
-                      ),
-                      DayForcast(
-                        time: "03:00pm",
-                        temp: "29°",
-                        wind: "13.5 km/h",
-                        icon: Icons.cloud,
-                        navIcon: Icons.navigation,
-                      ),
-                    ],
-                  ),
-                ),
+                const HourlyDetail(),
                 const SizedBox(
                   height: 35,
                 ),
-                Container(
-                  child: Column(children: [
-                    Text(
-                      "Weather details",
-                      style: GoogleFonts.roboto(
-                        textStyle: const TextStyle(
-                          color: fontColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
+                Column(children: [
+                  Text(
+                    "Weather details",
+                    style: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                        color: fontColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    
-                  ]),
-                )
+                  ),
+                  const Divider(
+                    color: fontColor,
+                    thickness: 1,
+                    indent: 110,
+                    endIndent: 110,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const WeatherDetail(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Powered by Raj Aryan",
+                    style: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                        color: fontColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ])
               ],
             ),
           ),
@@ -349,27 +278,3 @@ class _IndexState extends State<Index> {
     );
   }
 }
-// SizedBox(
-//               height: 35,
-//               child: TextFormField(
-//                 textAlign: TextAlign.center,
-//                 decoration: InputDecoration(
-//                   enabledBorder: OutlineInputBorder(
-//                     borderRadius: BorderRadius.circular(35),
-//                     borderSide: const BorderSide(width: 2, color: Colors.white),
-//                   ),
-//                   focusedBorder: OutlineInputBorder(
-//                     borderSide: const BorderSide(width: 2, color: Colors.white),
-//                     borderRadius: BorderRadius.circular(35),
-//                   ),
-//                   hintText: 'Search city',
-//                   hintStyle: const TextStyle(fontSize: 10,textBaseline: TextBaseline.ideographic,color: Colors.white),
-//                   suffixIcon: IconButton(
-//                     onPressed: () => {null},
-//                     icon: const Icon(Icons.search,),
-//                     color: Colors.white,
-//                     iconSize: 20,
-//                   ),
-//                 ),
-//               ),
-//             ),
