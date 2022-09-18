@@ -1,6 +1,6 @@
-import 'package:badal/components/threeDay.dart';
+import 'package:weda/components/threeDay.dart';
 import 'package:flutter/material.dart';
-import 'package:badal/constants.dart';
+import 'package:weda/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 class ThreeDayDetail extends StatelessWidget {
   const ThreeDayDetail({

@@ -1,6 +1,6 @@
-import 'package:badal/components/hourlyDetai;.dart';
-import 'package:badal/components/weatherDetail.dart';
-import 'package:badal/constants.dart';
+import 'package:weda/components/hourlyDetail.dart';
+import 'package:weda/components/weatherDetail.dart';
+import 'package:weda/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/threeDayDetail.dart';
@@ -15,8 +15,8 @@ class Index extends StatefulWidget {
 class _IndexState extends State<Index> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -70,7 +70,7 @@ class _IndexState extends State<Index> {
                       bottomRight: Radius.circular(40),
                     ),
                     color: Colors.black,
-                    shadowColor: Color.fromARGB(255, 24, 24, 24),
+                    shadowColor: const Color.fromARGB(255, 24, 24, 24),
                     elevation: 10,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -256,7 +256,7 @@ class _IndexState extends State<Index> {
                     height: 20,
                   ),
                   const WeatherDetail(),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(

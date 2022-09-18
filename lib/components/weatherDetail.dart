@@ -1,7 +1,5 @@
-import 'package:badal/components/wDetail.dart';
+import 'package:weda/components/wDetail.dart';
 import 'package:flutter/material.dart';
-import 'package:badal/constants.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class WeatherDetail extends StatelessWidget {
   const WeatherDetail({super.key});
@@ -11,7 +9,7 @@ class WeatherDetail extends StatelessWidget {
     return Material(
       borderRadius: BorderRadius.circular(40),
       color: Colors.black,
-      shadowColor: Color.fromARGB(255, 24, 24, 24),
+      shadowColor: const Color.fromARGB(255, 24, 24, 24),
       elevation: 10,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(5,20,5,20),

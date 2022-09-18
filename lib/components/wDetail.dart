@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:badal/constants.dart';
+import 'package:weda/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Wdetail extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:badal/components/daysForcast.dart';
+import 'package:weda/components/daysForcast.dart';
 import 'package:flutter/material.dart';
 class HourlyDetail extends StatelessWidget {
   const HourlyDetail({

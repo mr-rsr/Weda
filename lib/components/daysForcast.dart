@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:badal/constants.dart';
+import 'package:weda/constants.dart';
 
 class DayForcast extends StatelessWidget {
   const DayForcast(
