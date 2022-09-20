@@ -12,7 +12,7 @@ class WeatherDetail extends StatelessWidget {
       shadowColor: const Color.fromARGB(255, 24, 24, 24),
       elevation: 10,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(5,20,5,20),
+        padding: const EdgeInsets.fromLTRB(5,30,5,20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[

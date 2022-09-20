@@ -1,7 +1,5 @@
 import 'package:weda/Screens/index.dart';
 import 'package:flutter/material.dart';
-
-
 void main() => runApp(const Badal());
 
 class Badal extends StatelessWidget {
@@ -9,9 +7,10 @@ class Badal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return const MaterialApp(
+      
       debugShowCheckedModeBanner: false,
-      home: Index(),);
+      home: Index(),
+    );
   }
 }
