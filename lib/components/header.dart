@@ -1,10 +1,36 @@
-import'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weda/Services/Networking.dart';
 import 'package:weda/constants.dart';
+import '../Services/weatherData.dart';
+Networking networking = Networking();
 
-class Heading extends StatelessWidget {
-  const Heading({Key? key, required this.innerBoxIsScrolled}) : super(key: key);
+class Heading extends StatefulWidget {
+  Heading({Key? key, required this.innerBoxIsScrolled}) : super(key: key);
   final bool innerBoxIsScrolled;
+
+  @override
+  State<Heading> createState() => _HeadingState();
+}
+
+class _HeadingState extends State<Heading> {
+  String? city;
+  @override
+  void initState() {
+    updateUi();
+    super.initState();
+  }
+  void updateUi() async{
+    var weatherData=WeatherData.fromJson(await networking.getData());
+    setState(() {
+      if(weatherData.city!=null){
+        city=weatherData.city;
+      }
+      else{
+        city='Error';
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +42,8 @@ class Heading extends StatelessWidget {
       floating: true,
       pinned: true,
       snap: false,
-      backgroundColor: innerBoxIsScrolled ? Colors.black : Colors.transparent,
+      backgroundColor:
+          widget.innerBoxIsScrolled ? Colors.black : Colors.transparent,
       automaticallyImplyLeading: false,
       shadowColor: Colors.transparent,
       expandedHeight: 170,
@@ -25,7 +52,7 @@ class Heading extends StatelessWidget {
         expandedTitleScale: 2,
         centerTitle: true,
         title: Text(
-          'Raigarh',
+          "$city",
           style: GoogleFonts.roboto(
             textStyle: const TextStyle(
                 color: fontColor, fontSize: 25, fontWeight: FontWeight.w500),
@@ -49,4 +76,6 @@ class Heading extends StatelessWidget {
           ],
         ),
       ),
-    );}}
+    );
+  }
+}

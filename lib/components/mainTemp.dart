@@ -1,12 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weda/Services/Networking.dart';
+import 'package:weda/Services/weatherData.dart';
 import 'package:weda/constants.dart';
+Networking networking = Networking();
 
-class MainTemp extends StatelessWidget {
-  const MainTemp({
+
+class MainTemp extends StatefulWidget {
+   const MainTemp({
     Key? key,
   }) : super(key: key);
+  
 
+
+  @override
+  State<MainTemp> createState() => _MainTempState();
+}
+
+class _MainTempState extends State<MainTemp> {
+ String? temp;
+ String? feelslike;
+String? condition;
+ @override
+  void initState() {
+    updateUi();
+    super.initState();
+  }
+  void updateUi()async{
+    var weatherData=WeatherData.fromJson(await networking.getData());
+    setState(() {
+      if(weatherData.temp!=null){
+        temp=weatherData.temp;
+      }
+      else{
+        temp='Error';
+      }
+      if(weatherData.feelslike!=null){
+        feelslike=weatherData.feelslike;
+      }
+      else{
+        feelslike='Error';
+      }
+      if(weatherData.condition!=null){
+        condition=weatherData.condition;
+      }
+      else{
+        condition='Error';
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +67,7 @@ class MainTemp extends StatelessWidget {
                 width: 20,
               ),
               Text(
-                '29',
+                "$temp",
                 style: GoogleFonts.rubik(
                   textStyle: const TextStyle(
                     color: fontColor,
@@ -83,7 +125,7 @@ class MainTemp extends StatelessWidget {
                       size: 18,
                     ),
                     Text(
-                      'AQI 21',
+                      'Feels like $feelslike°C',
                       style: GoogleFonts.roboto(
                         textStyle: const TextStyle(
                           color: fontColor,

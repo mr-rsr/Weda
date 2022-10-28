@@ -1,3 +1,4 @@
+import 'package:weda/Services/Networking.dart';
 import 'package:weda/components/hourlyDetail.dart';
 import 'package:weda/components/weatherDetail.dart';
 import 'package:weda/constants.dart';
@@ -15,6 +16,13 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
+  Networking network = Networking();
+  @override
+  void initState() {
+    super.initState();
+    network.getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,7 +53,7 @@ class _IndexState extends State<Index> {
                     const SizedBox(
                       height: 40,
                     ),
-                    const MainTemp(),
+                    MainTemp(),
                     const ThreeDayDetail(),
                     Center(
                       child: Container(
@@ -60,7 +68,7 @@ class _IndexState extends State<Index> {
                             fit: BoxFit.contain,
                             child: Center(
                               child: Text(
-                                '5-day Forecast',
+                                '5 Day Forecast',
                                 style: GoogleFonts.roboto(
                                   textStyle: const TextStyle(
                                     color: fontColor,
@@ -101,7 +109,7 @@ class _IndexState extends State<Index> {
                       const SizedBox(
                         height: 20,
                       ),
-                      const WeatherDetail(),
+                      WeatherDetail(),
                       const SizedBox(
                         height: 20,
                       ),
