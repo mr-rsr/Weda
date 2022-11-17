@@ -16,11 +16,11 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
-  Networking network = Networking();
+  
   @override
   void initState() {
     super.initState();
-    network.getData();
+   
   }
 
   @override
