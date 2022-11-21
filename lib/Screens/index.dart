@@ -1,9 +1,11 @@
+import 'package:provider/provider.dart';
 import 'package:weda/Services/Networking.dart';
 import 'package:weda/components/hourlyDetail.dart';
 import 'package:weda/components/weatherDetail.dart';
 import 'package:weda/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weda/provider/weatherDataProvider.dart';
 import '../components/header.dart';
 import '../components/mainTemp.dart';
 import '../components/threeDayDetail.dart';

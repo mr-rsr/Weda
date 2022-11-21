@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:weda/Services/Networking.dart';
 import 'package:weda/constants.dart';
-import '../Services/weatherData.dart';
+import 'package:weda/provider/weatherDataProvider.dart';
+import '../modals/weatherData.dart';
 Networking networking = Networking();
 
 class Heading extends StatefulWidget {
@@ -14,26 +16,27 @@ class Heading extends StatefulWidget {
 }
 
 class _HeadingState extends State<Heading> {
-  String? city;
-  @override
-  void initState() {
-    updateUi();
-    super.initState();
-  }
-  void updateUi() async{
-    var weatherData=WeatherData.fromJson(await networking.getData());
-    setState(() {
-      if(weatherData.city!=null){
-        city=weatherData.city;
-      }
-      else{
-        city='Error';
-      }
-    });
-  }
+  // String? city;
+  // @override
+  // void initState() {
+  //   updateUi();
+  //   super.initState();
+  // }
+  // void updateUi() async{
+  //   var weatherData=(await networking.getData());
+  //   setState(() {
+  //     if(weatherData.city!=null){
+  //       city=weatherData.city;
+  //     }
+  //     else{
+  //       city='Error';
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final data=Provider.of<WeatherDataProvider>(context);
     return SliverAppBar(
       shape: const ContinuousRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -52,7 +55,7 @@ class _HeadingState extends State<Heading> {
         expandedTitleScale: 2,
         centerTitle: true,
         title: Text(
-          "$city",
+          data.data==null?"null":data.data!.city,
           style: GoogleFonts.roboto(
             textStyle: const TextStyle(
                 color: fontColor, fontSize: 25, fontWeight: FontWeight.w500),

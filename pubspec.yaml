@@ -38,6 +38,8 @@ dependencies:
   geolocator: ^9.0.1
   http: ^0.13.5
   deep_pick: ^0.10.0
+  provider: ^6.0.4
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

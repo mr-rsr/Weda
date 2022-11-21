@@ -4,11 +4,6 @@ import 'package:geolocator/geolocator.dart';
 class Location {
   late double latitude;
   late double longitude;
-
-  /// Determine the current position of the device.
-  ///
-  /// When the location services are not enabled or permissions
-  /// are denied the `Future` will return an error.
   Future<void> determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;

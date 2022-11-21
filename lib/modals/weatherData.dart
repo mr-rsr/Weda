@@ -1,4 +1,3 @@
-import 'package:weda/Services/Networking.dart';
 class WeatherData {
   WeatherData(
       {required this.temp,
@@ -9,14 +8,14 @@ class WeatherData {
       required this.pressure,
       required this.condition,
       required this.city});
-  final temp;
-  final feelslike;
-  final wind;
-  final humidity;
-  final uv;
-  final pressure;
-  final condition;
-  final city;
+  final String temp;
+  final String feelslike;
+  final String wind;
+  final String humidity;
+  final String uv;
+  final String pressure;
+  final String condition;
+  final String city;
   factory WeatherData.fromJson(Map<String, dynamic> json) {
     return WeatherData(
       temp: json['current']['temp_c'].round().toString(),

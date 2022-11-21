@@ -1,56 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:weda/Services/Networking.dart';
-import 'package:weda/Services/weatherData.dart';
+import 'package:weda/modals/weatherData.dart';
 import 'package:weda/constants.dart';
+
+import '../provider/weatherDataProvider.dart';
+
 Networking networking = Networking();
 
-
 class MainTemp extends StatefulWidget {
-   const MainTemp({
+  const MainTemp({
     Key? key,
   }) : super(key: key);
-  
-
 
   @override
   State<MainTemp> createState() => _MainTempState();
 }
 
 class _MainTempState extends State<MainTemp> {
- String? temp;
- String? feelslike;
-String? condition;
- @override
-  void initState() {
-    updateUi();
-    super.initState();
-  }
-  void updateUi()async{
-    var weatherData=WeatherData.fromJson(await networking.getData());
-    setState(() {
-      if(weatherData.temp!=null){
-        temp=weatherData.temp;
-      }
-      else{
-        temp='Error';
-      }
-      if(weatherData.feelslike!=null){
-        feelslike=weatherData.feelslike;
-      }
-      else{
-        feelslike='Error';
-      }
-      if(weatherData.condition!=null){
-        condition=weatherData.condition;
-      }
-      else{
-        condition='Error';
-      }
-    });
-  }
+  String? temp;
+  String? feelslike;
+  String? condition;
+  @override
+  // void initState() {
+  //   updateUi();
+  //   super.initState();
+  // }
+  // void updateUi()async{
+  //   var weatherData= (await networking.getData());
+  //   setState(() {
+  //     if(weatherData.temp!=null){
+  //       temp=weatherData.temp;
+  //     }
+  //     else{
+  //       temp='Error';
+  //     }
+  //     if(weatherData.feelslike!=null){
+  //       feelslike=weatherData.feelslike;
+  //     }
+  //     else{
+  //       feelslike='Error';
+  //     }
+  //     if(weatherData.condition!=null){
+  //       condition=weatherData.condition;
+  //     }
+  //     else{
+  //       condition='Error';
+  //     }
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<WeatherDataProvider>(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
       child: Column(
@@ -67,7 +69,7 @@ String? condition;
                 width: 20,
               ),
               Text(
-                "$temp",
+                data.data==null?"null":data.data!.temp,
                 style: GoogleFonts.rubik(
                   textStyle: const TextStyle(
                     color: fontColor,
@@ -94,7 +96,7 @@ String? condition;
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
-              'Cloudy',
+              data.data==null?"null":data.data!.condition,
               style: GoogleFonts.roboto(
                 textStyle: const TextStyle(
                   color: fontColor,
@@ -111,13 +113,11 @@ String? condition;
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
-              padding:
-                  const EdgeInsets.fromLTRB(15, 6, 15, 6),
+              padding: const EdgeInsets.fromLTRB(15, 6, 15, 6),
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     const Icon(
                       Icons.eco,
@@ -125,7 +125,7 @@ String? condition;
                       size: 18,
                     ),
                     Text(
-                      'Feels like $feelslike°C',
+                      'Feels like ${data.data==null?"null":data.data!.feelslike}°C',
                       style: GoogleFonts.roboto(
                         textStyle: const TextStyle(
                           color: fontColor,
